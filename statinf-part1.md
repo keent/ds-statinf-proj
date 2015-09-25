@@ -1,8 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
 # Simulation of Exponential Distribution
 authored by Gran Ville Lintao
 June 22, 2015
@@ -22,7 +17,8 @@ Note that
 
 The following code produces 10,000 means of 40 exponentials  
 
-```{r}
+
+```r
 n <- 40
 lambda <- 0.2
 
@@ -35,51 +31,74 @@ for (i in 1:10000)
 ## Sample Mean versus Theoretical Mean
 
 After running the simulation, we can now get the sample mean in R by:
-```{r, echo=TRUE}
+
+```r
 # sample mean
 meanS <- mean(mns)
 meanS
 ```
+
+```
+## [1] 4.984079
+```
 Meanwhile, the theoretical mean of Exponential distribution can be calculated by:
-```{r, echo=TRUE}
+
+```r
 # theoretical mean
 meanT = 1/lambda
 meanT
 ```
 
+```
+## [1] 5
+```
+
 We can see the sample mean __meanS__ approximates the theoretical mean __meanT__ quite closely.
-This means the distribution is centered at `r meanS` and is very close to the theoretical mean `r meanT`.
+This means the distribution is centered at 4.9840792 and is very close to the theoretical mean 5.
 
 ## Sample Variance versus Theoretical Variance
 
 Let's now calculate the sample variance. This can be done in R by:
-```{r, echo=TRUE}
+
+```r
 # sample variance
 varS <- var(mns)
 varS
 ```
 
+```
+## [1] 0.6396509
+```
+
 The theoretical variance on the other hand, is simply the standard deviation (1/lambda) squared over 
 n samples
-```{r, echo=TRUE}
+
+```r
 # theoretical variance
 varT <- (1/lambda)^2/n
 varT
 ```
 
-Here we can also see that the sample variance __varS__ : `r varS` is very close to the theoretical variance __varT__ : `r varT`.
+```
+## [1] 0.625
+```
+
+Here we can also see that the sample variance __varS__ : 0.6396509 is very close to the theoretical variance __varT__ : 0.625.
 
 
 ## Distribution
 By plotting the means using a simple histogram we can see quite clearly that the distribution is approximately normal.
 
 This can be done in R using ggplot:
-```{r, echo=TRUE}
+
+```r
 library(ggplot2)
 qplot(mns, geom="histogram",
       binwidth=0.2,
       xlab="Means", ylab="Frequency",
       main="Histogram for means of 40 Exponentials")
 ```
+
+![](statinf-part1_files/figure-html/unnamed-chunk-6-1.png) 
 
 
